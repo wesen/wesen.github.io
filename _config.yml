@@ -2,7 +2,7 @@ title:            Site Title
 tagline:          A short tagline
 description:      Describe your website.
 #Comment out url when working locally to resolve base urls correctly
-url:              http://your-site.com
+url:              
 
 # Owner/author information
 owner:
