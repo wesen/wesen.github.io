@@ -1,6 +1,6 @@
 ---
 layout: home
-description: "A responsive Jekyll theme with editorial tendencies by designer Michael Rose."
+description: "Wesen's stuff"
 tags: [Jekyll, theme, responsive, blog, template]
 image:
   feature: flower.jpg
