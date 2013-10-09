@@ -1,7 +1,7 @@
 ---
 layout: home
 description: "Wesen's stuff"
-tags: [Jekyll, theme, responsive, blog, template]
+tags: [blog]
 image:
   feature: flower.jpg
 ---

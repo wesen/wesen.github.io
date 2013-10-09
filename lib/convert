@@ -1,0 +1,1 @@
+(cat header.tpl; ipython nbconvert --to html --stdout --template jekyll bla.ipynb) > bla.md
