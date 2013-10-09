@@ -1,9 +1,0 @@
-count       338355
-mean     0.8752878
-std      0.3303928
-min          False
-25%              1
-50%              1
-75%              1
-max           True
-dtype: object
