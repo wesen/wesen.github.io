@@ -49,7 +49,7 @@ We now need to run this script from inside blender,
 so that we can inspect the whole API and generate stubs for it.
 For this, run the following scripts inside blender:
 
-```
+{% highlight python %}
 import sys
 
 # Edit this to the path to your IntellijIDEA13 directory
@@ -66,7 +66,7 @@ modules = ['mathutils', 'blf', 'gpu', 'aud', 'bpy_extras', 'bmesh', 'bgl', '_bpy
 # modules = ['bge.types', 'bge.logic', 'bge.render', 'bge.texture', 'bge.events', 'bge.constraints']
 for i in list(modules):
     generator3.process_one(i, None, True, path)
-```
+{% endhighlight %}
 
 Run this script to create python stubs for the binary modules.
 
