@@ -27,7 +27,10 @@ and add the scripts folder to your project.
 Mark the modules folder as "source folder" so that intellij will recognize
 the `bpy` module.
 
-![center](/figs/blender/2014-07-27--intellij-project-setup.png)
+<figure>
+        <a href="/figs/blender/2014-07-27--intellij-project-setup.png"><img src="/figs/blender/2014-07-27--intellij-project-setup.png"></a>
+        <figcaption>Intellij project setup</figcaption>
+</figure>
 
 This will give you a good starting to develop blender scripts.
 
@@ -78,7 +81,10 @@ To execute the python script above,
 we need to setup a trigger in the Logic Editor.
 
 
-![center](/figs/blender/2014-07-27--intellij-bge-setup.png)
+<figure>
+        <a href="/figs/blender/2014-07-27--intellij-bge-setup.png"><img src="/figs/blender/2014-07-27--intellij-bge-setup.png"></a>
+        <figcaption>Intellij project setup</figcaption>
+</figure>
 
 
 Press run in the BGE, and there you go, indexed BGE modules.
