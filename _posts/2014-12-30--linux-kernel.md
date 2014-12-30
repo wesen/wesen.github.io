@@ -146,3 +146,18 @@ which can lead to stalls in completely different parts of the kernel when an ioc
 and requires the driver to use its own locking.
 This function is preferred over the `compat_ioctl` call which still runs under the BKL.
 
+The file operations are added to the device file by creating a 
+`cdev` structure using `cdev_alloc`, `cdev_init` and `cdev_add`.
+
+Upon an `open` call, you can allocate memory and store it in the 
+`private_data` member of the `struct file` structure that is passed along.
+This allows to store per file-reader information. 
+This memory needs to be released upon a `release` call.
+
+This concludes chapter 4 of the book. 
+I will continue with chapter 7 tomorrow,
+which includes working with linked lists.
+I worked on the examples of chapter 7 a week ago, 
+made a stupid error in my linked list, crashed the kernel,
+but (due to a totally different issue), my ubuntu installation was corrupt.
+That stopped me dead in my tracks.
