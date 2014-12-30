@@ -107,3 +107,42 @@ This information can then be queried by running the `modinfo` command:
 	vermagic:       3.11.0-26-generic SMP mod_unload modversions
 	parm:           foobar:int
 
+### Creating a device file
+
+A character device number can be allocated dynamically with `alloc_chrdev_region`.
+The resulting character device number can be found in `/proc/devices`.
+
+	$ grep cdrv /proc/devices
+	251 mycdrv
+
+Device file handling is now done by the `udev` daemon.
+The kernel driver now registers what is called a `class` with the kernel.
+The kernel then ppulates the device class and device information into `/sys`.
+The `udev` daemon picks up on this information, and creates device files accordingly.
+This allows userland to tune the permissions, names and types of device files.
+
+Using the functions `class_create` followed by `device_create`, 
+a new device entry is signalled to `udev`. 
+The `udev` then consults its intricate set of rules 
+(under `/etc/udev/rules.d` in ubuntu) 
+and creates a device file with the appropriate major and minor node numbers
+and the appropriate permissions.
+
+Here is an entry to make usb module world read/writable:
+
+	SUBSYSTEM=="usb", ATTRS{idVendor}=="ffff", TAG+="udev-acl", TAG+="uaccess", MODE="0666"
+
+### Adding file operations
+
+You add file operations for your device file using a `struct file_operations`.
+
+The book mentions the `ioctl` entry, 
+which has been deprecated in favor of `unlocked_ioctl` and `compat_ioctl`.
+
+`ioctl` is this funky little way of doing IPC in an unchecked way.
+You pass it an integer along with another integer argument, and off you go.
+`ioctl` runs under the Big Kernel Lock, 
+which can lead to stalls in completely different parts of the kernel when an ioctl takes too long. There is now an `unlocked_ioctl` that runs outside the BKL, 
+and requires the driver to use its own locking.
+This function is preferred over the `compat_ioctl` call which still runs under the BKL.
+
