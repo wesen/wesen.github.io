@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Factor language
+title: Trying out factor
 category: articles
 ---
 
@@ -29,41 +29,35 @@ Here is a probably very naive attempt to search for the first value matching in 
 
 This is me writing c++ in Factor.
 
-```
-: is-first ( seq quot: ( elt -- ? ) -- ? ) [ first ] dip call ; inline
-: find-first ( seq quot: ( elt -- ? ) -- elt )
-    [ 2dup is-first ] ! check head
-    [ [ rest ] dip ] ! drop head
-    until
-    drop first ! return first element
-    ; inline
-```
+	: is-first ( seq quot: ( elt -- ? ) -- ? ) [ first ] dip call ; inline
+	: find-first ( seq quot: ( elt -- ? ) -- elt )
+	    [ 2dup is-first ] ! check head
+	    [ [ rest ] dip ] ! drop head
+	    until
+	    drop first ! return first element
+	    ; inline
 
 This is me cutting down on stack manipulation and creating a predicate quotation.
 
-```
-: find-first2 ( seq quot: ( elt -- ? ) -- elt )
-    [ dup first ] prepose ! create pred for until
-    [ rest ]
-    until
-    first
-    ; inline
-```
+	: find-first2 ( seq quot: ( elt -- ? ) -- elt )
+	    [ dup first ] prepose ! create pred for until
+	    [ rest ]
+	    until
+	    first
+	    ; inline
 
 The marginally less naive version, which is much longer because it handles special cases:
 
-```
-: check-first ( seq quot -- ? )
-    [ dup ] dip ! duplicate seq
-    [ first ] prepose ! turn quot into [ first quot ]
-    [ t ] swap
-    if-empty
-    ; inline
-
-: find-first3 ( seq quot: ( elt -- ? ) -- elt )
-    [ check-first ] curry ! create a predicate to check first or empty
-    [ rest ]
-    until
-    ?first
-    ; inline
-```
+	: check-first ( seq quot -- ? )
+	    [ dup ] dip ! duplicate seq
+	    [ first ] prepose ! turn quot into [ first quot ]
+	    [ t ] swap
+	    if-empty
+	    ; inline
+	
+	: find-first3 ( seq quot: ( elt -- ? ) -- elt )
+	    [ check-first ] curry ! create a predicate to check first or empty
+	    [ rest ]
+	    until
+	    ?first
+	    ; inline
