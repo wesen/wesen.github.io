@@ -2,6 +2,7 @@
 layout: post
 title: Trying out factor
 category: articles
+published: true
 ---
 
 I have been trying out a few new programming languages lately: Factor and Erlang.
