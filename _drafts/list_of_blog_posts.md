@@ -10,3 +10,5 @@
 
 * use selenium to test MCP / bessemer
 
+* use cuda highlighting in qt creator
+* tex errors articles by knuth + making software

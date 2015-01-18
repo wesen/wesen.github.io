@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Keeping a sketchbook
+comments: true
 category: articles
 ---
 
@@ -39,3 +40,5 @@ XXX -
 
 XXX - maybe I should start a blog post with a main topic that I want to write
 about, and write it out in bullet points / ideas that I then expand.
+
+
