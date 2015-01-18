@@ -11,7 +11,7 @@ The steps for [creating a docset](http://kapeli.com/docsets) are very simple, an
 
 The first step in creating a docset is to create the directory layout, adding a propery list information file, and creating a sqlite3 database. 
 
-~~~ bash
+{% highlight bash %}
 $ mkdir -p nist.docset/Contents/Resources/Documents/
 
 $ cat > nist.docset/Contents/Info.plist
@@ -33,23 +33,23 @@ $ sqlite3 docSet.dsidx 'CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TE
 $ sqlite3 docSet.dsidx 'CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);'
 
 </plist>
-~~~
+{% endhighlight %}
 
 The next step is to crawl the NIST webpage (which is fast, your mileage may vary depending on the sites you want to scrape). I couldn't find an HTML zip file.
 
 Note how I use the `-k` flag for wget to rewrite the HTML links.
 
-~~~ bash
+{% highlight bash %}
 $ wget -r -k -c -np http://xlinux.nist.gov/dads/
 $ # more the HTML files into the docset
 $ mv xlinux.nist.gov/dads/* nist.docset/Contents/Resources/Documents/
-~~~
+{% endhighlight %}
 
 Finally, we need to extract the titles of the downloaded HTML pages to extract the name of the entry, and add it to the sqlite3 index. I use [pup](https://github.com/EricChiang/pup) to parse the html. It is a very nice library that gives you a command line jquery style interface.
 
 This is the index.sh script I use, which needs to be run from inside `nist.docset/Contents/Resources/Documents`.
 
-~~~ bash
+{% highlight bash %}
 #!/bin/sh
 
 index () {
@@ -61,17 +61,17 @@ index () {
 }
 
 index "$1"
-~~~
+{% endhighlight %}
 
 Here is the loop I use to construct all the entries:
 
-~~~ bash
+{% highlight bash %}
 $ for i in HTML/*; do ../index.sh "$i"; done
-~~~
+{% endhighlight %}
 
 Once the database has been created, we need to add a nice icon to differentiate the docset from other docsets. I use a small mathematica script to create a multiresolution TIFF icon.
 
-~~~ mathematica
+{% highlight mathematica %}
 #!/usr/local/bin/MathematicaScript -script
 
 filename = First@Rest[$ScriptCommandLine];
@@ -90,7 +90,7 @@ logo = ImageCompose[blackRect, smallN];
 
 Export[filename, {ImageResize[logo, 16, Padding -> Black],
   ImageResize[logo, 32, Padding -> Black]}];
-~~~
+{% endhighlight %}
 
 Just run `make-icon.m icon.tiff` from inside `nist.docset`. 
 
