@@ -5,9 +5,7 @@ comments: true
 category: articles
 ---
 
-I came across the [NIST Dictionary of Algorithms and Data Structures](http://xlinux.nist.gov/dads/) today, and decided to create a [Dash](http://kapeli.com/dash) docset for it.
-
-The steps for [creating a docset](http://kapeli.com/docsets) are very simple, and I hope this blog post makes it easier for people to bundle standard webpages.
+I came across the [NIST Dictionary of Algorithms and Data Structures](http://xlinux.nist.gov/dads/) today, and decided to create a [Dash](http://kapeli.com/dash) docset for it. The steps for [creating a docset](http://kapeli.com/docsets) are very simple, and I hope this blog post makes it easier for people to bundle standard webpages.
 
 The first step in creating a docset is to create the directory layout, adding a propery list information file, and creating a sqlite3 database. 
 
