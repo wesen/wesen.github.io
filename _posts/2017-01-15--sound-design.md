@@ -85,26 +85,24 @@ and ended up making a full mess of it in terms of progression. Things are modula
 too much, without a clear direction. The best is probably to scrap the entire track into
 the scratchpad, and start afresh.
 
-<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+<iframe width="100%" height="160" src="https://clyp.it/4w0vnzk0/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/4w0vnzk0">idea 1 - heagonz3</a>
+<iframe width="100%" height="160" src="https://clyp.it/lkztzqjn/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/lkztzqjn">idea 2 - hexganoz</a>
+<iframe width="100%" height="160" src="https://clyp.it/3apxxkam/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/3apxxkam">idea 3 motorbeat2</a>
+<iframe width="100%" height="160" src="https://clyp.it/m5izpda5/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/m5izpda5">idea 4 - motorbeatring</a>
+<iframe width="100%" height="160" src="https://clyp.it/yjcdroue/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/yjcdroue">idea 5 - teczno</a>
+<iframe width="100%" height="160" src="https://clyp.it/es53cap4/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/es53cap4">idea 6 - teczno2</a>
+<iframe width="100%" height="160" src="https://clyp.it/00sw0e0s/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/00sw0e0s">idea 7 - oonz</a>
+<iframe width="100%" height="160" src="https://clyp.it/v2nwxub4/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/v2nwxub4">idea 8 - carioca</a>
+<iframe width="100%" height="160" src="https://clyp.it/lrvvcjlq/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/lrvvcjlq">idea 10 - bass zhiffle </a>
+<iframe width="100%" height="160" src="https://clyp.it/p1aq351i/widget" frameborder="0"></iframe>
 
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/p1aq351i">idea 11 - boomb</a>
-
-<a class="embedly-card" data-card-key="20f0cfdf827a49e4b11f6cf34aeedf08" data-card-controls="0" href="https://clyp.it/cdxw3hfw">idea 12 - boom</a>
+<iframe width="100%" height="160" src="https://clyp.it/cdxw3hfw/widget" frameborder="0"></iframe>
