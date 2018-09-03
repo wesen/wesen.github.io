@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>266F99FC-AEF2-42E6-B6B9-C4E76C77510D-3671-00001BE9531EB202</title>
+  <title>Code Snippet Monday: Implementing a menu system in Pico-8</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style id="mkstylesheet">
 body{-webkit-font-smoothing:antialiased;font-family:"Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;margin:30px 0 0;padding:0;background:#fff}#wrapper{padding:20px}li{font-size:110%}li li{font-size:100%}li p{font-size:100%;margin:.5em 0}h1{color:#000}h2{color:#111}h3{color:#111;margin:0}h4{color:#111}h5{color:#111}h6{font-size:1em;line-height:1.5em;margin:1.5em 0}body,p,td,div{color:#111;font-family:"Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;word-wrap:break-word}a{color:#0d6ea1;text-decoration:none;-webkit-transition:color .2s ease-in-out;-moz-transition:color .2s ease-in-out;-o-transition:color .2s ease-in-out;-ms-transition:color .2s ease-in-out;transition:color .2s ease-in-out}a:hover{color:#3593d9}body{font-size:15px;line-height:21px;margin:0 auto}h1{font-size:37px;line-height:42px;margin-top:42px;margin-bottom:21px}h2{font-size:27px;line-height:42px;margin-top:42px;margin-bottom:21px}h3{font-size:20px;line-height:21px;margin-top:21px;margin-bottom:21px}h4{font-size:20px;line-height:21px;margin-top:21px;margin-bottom:21px}p,ul,ol,pre,table,blockquote{margin-top:21px;margin-bottom:21px}hr{border:1px solid;margin:-1px 0}ul ul,ol ol,ul ol,ol ul{margin-top:0;margin-bottom:0}b,strong,em,small,code{line-height:1}.footnote{color:#0d6ea1;font-size:.8em;vertical-align:super}abbr,acronym{border-bottom:1px dotted #aaa}#wrapper img{max-width:100%;height:auto}dd{font-size:1em;margin-bottom:1em}li>p:first-of-type{margin:0}li p+p{margin-top:16px}ul,ol{padding-left:1.5em}#wrapper ol{list-style-position:outside}ul ul,ul ol{margin-bottom:.4em}caption,col,colgroup,table,tbody,td,tfoot,th,thead,tr{border-spacing:0}table{border:1px solid rgba(0,0,0,0.25);border-collapse:collapse;display:table;empty-cells:hide;margin:-1px 0 1.3125em;padding:0;table-layout:fixed}caption{display:table-caption;font-weight:700}col{display:table-column}colgroup{display:table-column-group}tbody{display:table-row-group}tfoot{display:table-footer-group}thead{display:table-header-group}td,th{display:table-cell}tr{display:table-row}table th,table td{font-size:1.1em;line-height:1.3;padding:.5em 1em 0}table thead{background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.15);border-bottom:1px solid rgba(0,0,0,0.2)}table tbody{background:rgba(0,0,0,0.05)}table tfoot{background:rgba(0,0,0,0.15);border:1px solid rgba(0,0,0,0.15);border-top:1px solid rgba(0,0,0,0.2)}figure{display:inline-block;overflow:hidden;position:relative;margin:1em 0 2em}figcaption{font-style:italic;text-align:center;background:white;color:#666}.poetry pre{display:block;font-family:Georgia,Garamond,serif !important;font-size:110% !important;font-style:italic;line-height:1.6em;margin-left:1em}.poetry pre code{font-family:Georgia,Garamond,serif !important;word-break:break-all;word-break:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;white-space:pre-wrap}blockquote p{font-size:110%;font-style:italic;line-height:1.6em}sup,sub,a.footnote{font-size:1.4ex;height:0;line-height:1;position:relative;vertical-align:super}sub{vertical-align:sub;top:-1px}p,h5{font-size:1.1429em;line-height:1.3125em;margin:1.3125em 0}dt,th{font-weight:700}table tr:nth-child(odd),table th:nth-child(odd),table td:nth-child(odd){background:rgba(255,255,255,0.06)}table tr:nth-child(even),table td:nth-child(even){background:rgba(200,200,200,0.25)}@media print{img,table,figure{page-break-inside:avoid}#wrapper{background:#fff;color:#303030;padding:10px;position:relative;text-indent:0}}@media screen{.inverted{background:#252a2a}.inverted #wrapper{background:#252a2a;color:#eee}.inverted hr{border-color:#333f40 !important}.inverted p,.inverted td,.inverted li,.inverted h1,.inverted h2,.inverted h3,.inverted h4,.inverted h5,.inverted h6,.inverted th,.inverted .math,.inverted caption,.inverted dt,.inverted dd{color:#eee}.inverted pre{background:#ccc;color:#111}.inverted table{background:none}.inverted table tr:nth-child(odd),.inverted table td:nth-child(odd){background:none}.inverted a{color:#acd1d5}::selection{background:rgba(157,193,200,0.5)}h1::selection{background-color:rgba(45,156,208,0.3)}h2::selection{background-color:rgba(90,182,224,0.3)}h3::selection,h4::selection,h5::selection,h6::selection,li::selection,ol::selection{background-color:rgba(133,201,232,0.3)}code::selection{background-color:rgba(0,0,0,0.7);color:#eee}code span::selection{background-color:rgba(0,0,0,0.7) !important;color:#eee !important}a::selection{background-color:rgba(255,230,102,0.2)}.inverted a::selection{background-color:rgba(255,230,102,0.6)}td::selection,th::selection,caption::selection{background-color:rgba(180,237,95,0.5)}}.mkstyle--swiss #wrapper aside.blurb:before{margin-top:.7em}
@@ -22,8 +22,10 @@ html,body,#wrapper{font-size:10pt!important}
   <div id="wrapper">
       <h1 id="codesnippetmonday%3Aimplementingamenusysteminpico-8">Code Snippet Monday: Implementing a menu system in Pico&#8211;8</h1>
 
+<h1 id="pico8gamedevpatreonsnippet-monday">pico8 #gamedev #patreon #snippet-monday</h1>
+
 <figure>
-<img src="assets/menusystem_1.gif" alt="" />
+<img src="Code%20Snippet%20Monday:%20Implementing%20a%20menu%20system%20in%20Pico-8/menusystem_1.gif" alt="" />
 </figure>
 
 <p>The menu system in action</p>
@@ -53,7 +55,7 @@ end</code></pre>
 <h2 id="step2%3Adrawabox">Step 2: Draw a box</h2>
 
 <figure>
-<img src="assets/menusystem_000.png" alt="" />
+<img src="Code%20Snippet%20Monday:%20Implementing%20a%20menu%20system%20in%20Pico-8/menusystem_000.png" alt="" />
 </figure>
 
 <p>We are now ready to draw the menu itself. We create a class <code>cls_menu</code>, with a <code>draw</code> and an <code>update</code> method that get called from the respective main functions. We hardcode a width and a height for the menu, and draw a refined gray and white rectangle.</p>
@@ -84,7 +86,7 @@ end</code></pre>
 <h2 id="step3%3Apopulatingourmenu">Step 3: Populating our menu</h2>
 
 <figure>
-<img src="assets/menusystem_001.png" alt="" />
+<img src="Code%20Snippet%20Monday:%20Implementing%20a%20menu%20system%20in%20Pico-8/menusystem_001.png" alt="" />
 </figure>
 
 <p>Our empty box looks very sad. It is time to populate it with some text entries. The more entries, the higher the box should get. We also want to preserve a small border to avoid having a cramped menu. We store our menu entries as simple strings in a table entry called <code>entries</code>. Some iteration and some offset magic, and our menu can now display strings.</p>
@@ -122,7 +124,7 @@ menu:add(&quot;entry 3&quot;)</code></pre>
 <h2 id="step4%3Aselectingthecurrententry">Step 4: Selecting the current entry</h2>
 
 <figure>
-<img src="assets/menusystem_2.gif" alt="" />
+<img src="Code%20Snippet%20Monday:%20Implementing%20a%20menu%20system%20in%20Pico-8/menusystem_2.gif" alt="" />
 </figure>
 
 <p>Our menu is quite useless, as we can&#8217;t even select an entry. We now introduce a new class, called <code>cls_menuentry</code>. This class contains the text, the size and a callback for each menu entry. Instead of using a raw string, we store instances of this class in <code>self.entries</code>. This allows us to set callbacks, and to have entries of varying sizes, which will come in handy in the future.</p>
@@ -166,7 +168,7 @@ end
 </code></pre>
 
 <figure>
-<img src="assets/menusystem_002.png" alt="" />
+<img src="Code%20Snippet%20Monday:%20Implementing%20a%20menu%20system%20in%20Pico-8/menusystem_002.png" alt="" />
 </figure>
 
 <p>All this input handling is nice, but without feedback to show the user which entry is selected, our code is useless. After drawing a beautiful arrow sprite in pico8&#8217;s sprite editor, we can now display a slightly offset current entry, and use our new <code>cls_menuentry:size()</code> method.</p>
@@ -228,7 +230,108 @@ function _draw()
  menu:draw()
 end</code></pre>
 
-<p>The next code snippet (on thursday!) will get into implementing the numerical sliders. Stay tuned!</p>
+<h2 id="step5-addingnumericalmenuentries">Step 5 - Adding numerical menu entries</h2>
+
+<figure>
+<img src="Code%20Snippet%20Monday:%20Implementing%20a%20menu%20system%20in%20Pico-8/menusystem_3.gif" alt="" />
+</figure>
+
+<p>We don&#8217;t only want to toggle values, but we also want to adjust numerical values. I decided to copy the slider used in the sprite editor. We are going to use duck typing here. Instead of having the numerical slider be a subclass of the text menu entry, we are going to implement the same methods: <code>draw</code>, <code>size</code>, <code>update</code> and <code>activate</code>.</p>
+
+<p>A numerical slider has a text and a callback, just like a normal menu entry. The text entry on activation expands to show a numerical slider. This changes the size of the entry. We store the state of the entry (if it is open or not) in a local variable <code>state</code>.</p>
+<pre><code class="lua">cls_menu_numberentry=class(function(self,text,callback)
+  self.text=text
+  self.callback=callback
+  self.state=0 -- 0=close, 1=open
+end)</code></pre>
+
+<p>Activating the entry unfolds it, which makes it bigger.</p>
+<pre><code class="lua">function cls_menu_numberentry:size()
+  return self.state==0 and 8 or 18
+end
+
+function cls_menu_numberentry:activate()
+  if self.state==0 then
+    self.state=1
+  else
+    self.state=0
+  end
+end</code></pre>
+
+<figure>
+<img src="Code%20Snippet%20Monday:%20Implementing%20a%20menu%20system%20in%20Pico-8/menusystem_003.png" alt="" />
+</figure>
+
+<p>We then draw a couple of of lines and a new pointer sprite to draw the slider. Currently, our slider stays at 0.</p>
+<pre><code class="lua">function cls_menu_numberentry:draw(x,y)
+  if self.state==0 then
+    print(self.text,x,y,7)
+  else
+    print(self.text,x,y,7)
+
+    local off=10
+    local w=24
+    local left=x
+    local right=x+w
+    line(left,y+off,right,y+off,13)
+    line(left,y+off,left,y+off+1)
+    line(right,y+off,right,y+off+1)
+    line(left+1,y+off+2,right-1,y+off+2,6)
+    local pct=0
+    print(0,right+5,y+off-2,7)
+    spr(1,left-2+pct*w,y+off-2)
+  end
+end</code></pre>
+
+<p>All that is left is to add a couple of numerical entries to the menu.</p>
+<pre><code class="lua">local e=cls_menu_numberentry.init(&quot;radius&quot;, function() end)
+add(menu.entries,e)
+local e=cls_menu_numberentry.init(&quot;spd&quot;, function() end)
+add(menu.entries,e)</code></pre>
+
+<h2 id="step6-addingfunctionalitytothenumericalsliders">Step 6 - Adding functionality to the numerical sliders</h2>
+
+<figure>
+<img src="Code%20Snippet%20Monday:%20Implementing%20a%20menu%20system%20in%20Pico-8/menusystem_4.gif" alt="" />
+</figure>
+
+<p>Our sliders are pretty, but they don&#8217;t really do much. We want the slider to go from a minimum value to a maximum value, in increments of a certain size. Using the arrow keys will call the callback on every change. The code changes required are minimal. We add the relevant values as member variables. Note that we call the callback on initialization to ensure that our callback is synchronized with the actual slider value.</p>
+<pre><code class="lua">cls_menu_numberentry=class(function(self,text,callback,value,min,max,inc)
+  self.text=text
+  self.callback=callback
+  self.value=value
+  self.min=min or 0
+  self.max=max or 10
+  self.inc=inc or 1
+  self.state=0 -- 0=close, 1=open
+  if (self.callback!=nil) self.callback(self.value,self)
+end)</code></pre>
+
+<p>We also initialize our menu entries accordingly.</p>
+<pre><code class="lua">local e=cls_menu_numberentry.init(
+ &quot;radius&quot;,
+ function(v) radius=v end,
+  1,1,10)
+add(menu.entries,e)
+e=cls_menu_numberentry.init(
+ &quot;spd&quot;,
+ function(v) spd=v end,
+  10,1,20)
+add(menu.entries,e)</code></pre>
+
+<p>The drawing code needs to be updated to draw the arrow pointer at the right location, and display the current value.</p>
+<pre><code class="lua">    local pct=(self.value-self.min)/(self.max-self.min)
+    print(tostr(self.value),right+5,y+off-2,7)
+    spr(1,left-2+pct*w,y+off-2)</code></pre>
+
+<p>The only missing part of the puzzle is actually changing the slider value!</p>
+<pre><code class="lua">function cls_menu_numberentry:update()
+  if (btnp(0)) self.value=max(self.min,self.value-self.inc)
+  if (btnp(1)) self.value=min(self.max,self.value+self.inc)
+  if (self.callback!=nil) self.callback(self.value)
+end</code></pre>
+
+<p>Now going on your merry ways tweaking values in game, and get hyped for the next code snippet monday!</p>
 <!-- ##END MARKED WRAPPER## -->
     </div>
 
