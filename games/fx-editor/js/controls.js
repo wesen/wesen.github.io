@@ -6,7 +6,15 @@ function onControlChanged(control) {
   // for now, we only deal with numbers
   var fractional = Math.floor((data % 1.) * 65536.);
   var integer = Math.floor(data);
-  var args = [node.id, node.controlNumbers[control.key], integer / 256, integer % 256, fractional / 256, fractional % 256];
+  if (integer < 0) {
+    integer = 0xffff + integer;
+  }
+  var args = [
+    node.id, node.inputNumbers[control.key],
+    integer / 256,
+    integer % 256,
+    fractional / 256,
+    fractional % 256];
 
   doRpcCall(RPC_TYPE_SET_VALUE, args, function (args) {
     console.log("Set value", args)
@@ -93,3 +101,48 @@ class TextControl extends Rete.Control {
     this._alight.scan()
   }
 }
+
+function handleFileSelect(evt) {
+  var files = evt.target.files;
+
+  var output = [];
+  for (var i = 0, f; f = files[i]; i++) {
+    var reader = new FileReader();
+
+    reader.onload = (function (theFile) {
+      return function (e) {
+        console.log('e readAsText = ', e);
+        console.log('e readAsText target = ', e.target);
+        try {
+          //handle loading editor here
+          editor.fromJSON(JSON.parse(e.target.result))
+          console.log('JSON has been loaded to editor');
+        } catch (ex) {
+          console.log('ex when trying to parse json = ' + ex);
+        }
+      }
+    })(f);
+    reader.readAsText(f);
+  }
+
+}
+
+function uploadReroute(){
+  document.querySelector('#files').click();
+}
+
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
+document.getElementById("saveLSToFile").addEventListener("click", function(){
+  var text = localStorage.module;
+  var filename = prompt("Name your file:","Particle_Effect_01");
+  var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+  saveAs(blob, filename+".json");
+  console.log("LocalStorage saved to file")
+});
+document.getElementById("saveEditorToFile").addEventListener("click", function(){
+  var text = JSON.stringify(editor.toJSON());
+  var filename = prompt("Name your file:","Particle_Effect_01");
+  var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+  saveAs(blob, filename+".json");
+  console.log("Editor saved to file")
+});

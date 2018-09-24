@@ -72,8 +72,11 @@ function cls_node_debug:str()
  return "dbg:"..tostr(self.v)
 end
 
--- multadd node ---------
+function cls_node_debug:draw()
+ print(tostr(self.v),100,100)
+end
 
+-- multadd node ---------
 cls_node_multadd=subclass(cls_node,function(self,args)
  cls_node._ctr(self,args)
  self.a=1
@@ -143,8 +146,6 @@ function cls_node_sine:set_value(id,value)
 end
 
 function cls_node_sine:draw()
- print(tostr(self.v),0,120,7)
- print(tostr(#self.connections),40,120,7)
 end
 
 function cls_node_sine:str()
@@ -168,6 +169,19 @@ end
 
 function cls_node_mouse:str()
  return "mouse"
+end
+
+-- latch node
+
+cls_node_latch=subclass(cls_node,function(self,args)
+ cls_node._ctr(self,args)
+ self.v=0
+end)
+node_types[14]=cls_node_latch
+
+function cls_node_latch:set_value(id,value)
+ if (id==0) self.v=value
+ if (id==1) self:send_value(0,self.v)
 end
 
 -- node rpc -------------------------
