@@ -1,20 +1,52 @@
+function encodeData(data) {
+  var res = [];
+  switch (typeof(data)) {
+    case "number":
+      res.push(RPC_TYPE_NUMBER);
+      res = res.concat(encodeNumber(data));
+      break;
+
+    case "boolean":
+      res.push(RPC_TYPE_BOOLEAN);
+      res.push(data ? 1 : 0);
+      break;
+
+    case "object":
+      res.push(RPC_TYPE_NUMBER_ARRAY);
+      res.push(data.length);
+      for (let i = 0; i < data.length; i++) {
+        res = res.concat(encodeNumber(data[i]));
+      }
+      break;
+  }
+
+  return res;
+}
+
+function encodeNumber(data) {
+  var fractional = Math.floor((data % 1.) * 65536.);
+
+  var integer = Math.floor(data);
+  if (integer < 0) {
+    integer = 0xffff + integer + 1;
+  }
+
+  return [
+    Math.floor(integer / 256),
+    integer % 256,
+    fractional / 256,
+    fractional % 256];
+}
+
 function onControlChanged(control) {
   var node = control.getNode();
   var data = control.getData(control.key);
   console.log("onControlChange", control, node, data);
 
   // for now, we only deal with numbers
-  var fractional = Math.floor((data % 1.) * 65536.);
-  var integer = Math.floor(data);
-  if (integer < 0) {
-    integer = 0xffff + integer;
-  }
   var args = [
-    node.id, node.inputNumbers[control.key],
-    integer / 256,
-    integer % 256,
-    fractional / 256,
-    fractional % 256];
+    node.id, node.inputNumbers[control.key]
+  ].concat(encodeData(data));
 
   doRpcCall(RPC_TYPE_SET_VALUE, args, function (args) {
     console.log("Set value", args)
@@ -47,10 +79,92 @@ var VueNumControl = {
   }
 };
 
+var VueColorControl = {
+  props: ['readonly', 'emitter', 'ikey', 'getData', 'putData', 'control'],
+  template: '<div>{{ikey}} <input type="text" :readonly="readonly" :value="textValue" @input="change($event)"/></div>',
+  data() {
+    return {
+      value: [7],
+    }
+  },
+  computed: {
+    textValue: function () {
+      return this.value.join(',')
+    }
+  },
+  methods: {
+    change(e) {
+      this.value = e.target.value.split(/\s*,\s*/).map((s) => +s);
+      this.update();
+    },
+    update() {
+      if (this.ikey) {
+        this.putData(this.ikey, this.value)
+      }
+      this.emitter.trigger('process');
+      onControlChanged(this.control);
+    }
+  },
+  mounted() {
+    this.value = this.getData(this.ikey);
+  }
+};
+
+var VueBoolControl = {
+  props: ['readonly', 'emitter', 'ikey', 'getData', 'putData', 'control'],
+  template: '<div>{{ikey}} <input type="checkbox" :readonly="readonly" :checked="value" @input="change($event)"/></div>',
+  data() {
+    return {
+      value: false,
+    }
+  },
+  methods: {
+    change(e) {
+      console.log("Changed value", e.target.checked, typeof(e.target.value));
+      this.value = e.target.checked;
+      this.update();
+    },
+    update() {
+      if (this.ikey) {
+        this.putData(this.ikey, this.value)
+      }
+      this.emitter.trigger('process');
+      onControlChanged(this.control);
+    }
+  },
+  mounted() {
+    this.value = this.getData(this.ikey);
+  }
+};
+
 class NumControl extends Rete.Control {
   constructor(emitter, key, readonly, id) {
     super(key);
     this.component = VueNumControl;
+    this.props = {emitter, ikey: key, readonly, control: this};
+  }
+
+  setValue(val) {
+    this.vueContext.value = val;
+  }
+}
+
+class BoolControl extends Rete.Control {
+  constructor(emitter, key, readonly, id) {
+    super(key);
+    this.component = VueBoolControl;
+    this.props = {emitter, ikey: key, readonly, control: this};
+  }
+
+  setValue(val) {
+    this.vueContext.value = val;
+  }
+}
+
+class ColorControl extends Rete.Control {
+  constructor(emitter, key, readonly, id) {
+    super(key);
+    this.component = VueColorControl;
     this.props = {emitter, ikey: key, readonly, control: this};
   }
 
@@ -127,22 +241,22 @@ function handleFileSelect(evt) {
 
 }
 
-function uploadReroute(){
+function uploadReroute() {
   document.querySelector('#files').click();
 }
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
-document.getElementById("saveLSToFile").addEventListener("click", function(){
+document.getElementById("saveLSToFile").addEventListener("click", function () {
   var text = localStorage.module;
-  var filename = prompt("Name your file:","Particle_Effect_01");
+  var filename = prompt("Name your file:", "Particle_Effect_01");
   var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
-  saveAs(blob, filename+".json");
+  saveAs(blob, filename + ".json");
   console.log("LocalStorage saved to file")
 });
-document.getElementById("saveEditorToFile").addEventListener("click", function(){
+document.getElementById("saveEditorToFile").addEventListener("click", function () {
   var text = JSON.stringify(editor.toJSON());
-  var filename = prompt("Name your file:","Particle_Effect_01");
+  var filename = prompt("Name your file:", "Particle_Effect_01");
   var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
-  saveAs(blob, filename+".json");
+  saveAs(blob, filename + ".json");
   console.log("Editor saved to file")
 });
